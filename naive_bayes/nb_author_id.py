@@ -16,11 +16,6 @@ sys.path.append("../tools/")
 from email_preprocess import preprocess
 from sklearn.naive_bayes import GaussianNB
 
-### features_train and features_test are the features for the training
-### and testing datasets, respectively
-### labels_train and labels_test are the corresponding item labels
-features_train, features_test, labels_train, labels_test = preprocess()
-
 
 def train(features_train, labels_train):
     t0 = time()
@@ -35,7 +30,14 @@ def test(clf, features_test, labels_test):
 
 
 def main():
+    ### features_train and features_test are the features for the training
+    ### and testing datasets, respectively
+    ### labels_train and labels_test are the corresponding item labels
+    features_train, features_test, labels_train, labels_test = preprocess()
+    print("Start Training")
     clf = train(features_train, labels_train)
+    print("End of training!")
+
     ## Check for accuracy of the classifier
     print(test(clf, features_test, labels_test))
 
